@@ -6,18 +6,18 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support import expected_conditions as EC
 
-chrome_options = Options()
-chrome_options.add_argument("--headless=new")  # modo headless moderno, o usa --headless
-chrome_options.add_argument("--no-sandbox")
-chrome_options.add_argument("--disable-dev-shm-usage")
-chrome_options.add_argument("--disable-gpu")
-chrome_options.add_argument("--disable-extensions")
-chrome_options.add_argument("--remote-debugging-port=9222")
-chrome_options.add_argument("--user-data-dir=/tmp/unique-chrome-profile")  # usa un directorio temporal y único
-
-driver = webdriver.Chrome(options=chrome_options)
+def create_driver():
+    chrome_options = Options()
+    chrome_options.add_argument("--headless=new")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--disable-gpu")
+    chrome_options.add_argument("--disable-extensions")
+    chrome_options.add_argument("--remote-debugging-port=9222")
+    chrome_options.add_argument("--user-data-dir=/tmp/unique-chrome-profile")
+    return webdriver.Chrome(options=chrome_options)
 
 # Lista de regiones y subzonas
 regiones = [
